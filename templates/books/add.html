@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-6">
+  <h4 class="mb-4">{{ 'Edit' if book else 'Add New' }} Book</h4>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <form method="POST">
+        <div class="mb-3">
+          <label class="form-label">Title *</label>
+          <input type="text" class="form-control" name="title" value="{{ book.title if book else '' }}" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Author *</label>
+          <input type="text" class="form-control" name="author" value="{{ book.author if book else '' }}" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">ISBN</label>
+          <input type="text" class="form-control" name="isbn" value="{{ book.isbn if book else '' }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Genre</label>
+          <input type="text" class="form-control" name="genre" value="{{ book.genre if book else '' }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Quantity</label>
+          <input type="number" class="form-control" name="quantity" value="{{ book.quantity if book else 1 }}" min="1">
+        </div>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Save Book</button>
+          <a href="{{ url_for('books.list_books') }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

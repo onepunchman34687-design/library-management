@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-6">
+  <h4 class="mb-4">Issue Book</h4>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <form method="POST">
+        <div class="mb-3">
+          <label class="form-label">Select Book *</label>
+          <select class="form-select" name="book_id" required>
+            <option value="">— Choose a book —</option>
+            {% for book in books %}
+              <option value="{{ book.id }}">{{ book.title }} ({{ book.available }} available)</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Select Member *</label>
+          <select class="form-select" name="member_id" required>
+            <option value="">— Choose a member —</option>
+            {% for member in members %}
+              <option value="{{ member.id }}">{{ member.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <p class="text-muted small">Due date is automatically 14 days from today. Fine: ₹2/day after due date.</p>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary">Issue Book</button>
+          <a href="{{ url_for('transactions.list_transactions') }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

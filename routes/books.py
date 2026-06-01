@@ -22,7 +22,7 @@ def add_book():
         book = Book(
             title=request.form['title'],
             author=request.form['author'],
-            isbn=request.form.get('isbn'),
+            isbn=request.form.get('isbn') or None,
             genre=request.form.get('genre'),
             quantity=int(request.form.get('quantity', 1)),
             available=int(request.form.get('quantity', 1))
@@ -39,7 +39,7 @@ def edit_book(id):
     if request.method == 'POST':
         book.title = request.form['title']
         book.author = request.form['author']
-        book.isbn = request.form.get('isbn')
+        book.isbn = request.form.get('isbn') or None
         book.genre = request.form.get('genre')
         book.quantity = int(request.form.get('quantity', 1))
         db.session.commit()
